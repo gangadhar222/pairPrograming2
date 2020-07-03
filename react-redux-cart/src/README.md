@@ -1,8 +1,8 @@
 # This is a React Shopping cart consists if 
-            1.Home Page : /
-            2.Add Products page : /addproducts
-            3.Cart page : /cart
-            4.Orders page : /orders
+    1.Home Page : /
+    2.Add Products page : /addproducts
+    3.Cart page : /cart
+    4.Orders page : /orders
 
 # 1.Home
     shows all the products.
