@@ -3,8 +3,8 @@ import data from '../Data.js'
 
 let initialState = {
     data: data,
-    cartArray:[],
-    orderArray:[],
+    cartArray: [],
+    orderArray: [],
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -16,24 +16,37 @@ const reducer = (state = initialState, { type, payload }) => {
                 }
             }
         case EDIT_PRODUCT:
+            console.log(payload)
+            let editData = state.data.map(item =>
+                item.id == payload.id ?
+                    {
+                        ...item,
+                        name: payload.name,
+                        cost: payload.price,
+                        category: payload.category
+                    }
+                    : item
+            )
+            console.log(editData)
             {
                 return {
-                    ...state
-                }
-            }
-        case ADD_TO_CART:{
-                let item=state.data.find(item=>item.id==payload)
-
-                return {
                     ...state,
-                    cartArray:[...state.cartArray,item]
+                    data: editData
                 }
             }
-        case ADD_TO_ORDER:{
+        case ADD_TO_CART: {
+            let item = state.data.find(item => item.id == payload)
+
+            return {
+                ...state,
+                cartArray: [...state.cartArray, item]
+            }
+        }
+        case ADD_TO_ORDER: {
             console.log(payload)
             return {
                 ...state,
-                orderArray:[...state.orderArray,payload]
+                orderArray: [...state.orderArray, payload]
             }
         }
         default:
