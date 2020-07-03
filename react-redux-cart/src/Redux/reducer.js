@@ -1,8 +1,10 @@
-import { ADD_PRODUCT, ADD_TO_CART, EDIT_PRODUCT } from './actionTypes';
+import { ADD_PRODUCT, ADD_TO_CART, EDIT_PRODUCT, ADD_TO_ORDER } from './actionTypes';
 import data from '../Data.js'
 
 let initialState = {
-    data: data
+    data: data,
+    cartArray:[],
+    orderArray:[],
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -19,12 +21,21 @@ const reducer = (state = initialState, { type, payload }) => {
                     ...state
                 }
             }
-        case ADD_TO_CART:
-            {
+        case ADD_TO_CART:{
+                let item=state.data.find(item=>item.id==payload)
+
                 return {
-                    ...state
+                    ...state,
+                    cartArray:[...state.cartArray,item]
                 }
             }
+        case ADD_TO_ORDER:{
+            console.log(payload)
+            return {
+                ...state,
+                orderArray:[...state.orderArray,payload]
+            }
+        }
         default:
             return state
     }

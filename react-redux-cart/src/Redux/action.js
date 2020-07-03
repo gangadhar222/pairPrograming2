@@ -1,4 +1,4 @@
-import {ADD_PRODUCT,ADD_TO_CART,EDIT_PRODUCT} from './actionTypes';
+import {ADD_PRODUCT,ADD_TO_CART,EDIT_PRODUCT,ADD_TO_ORDER} from './actionTypes';
 
 export const addProduct = payload => ({
     type: ADD_PRODUCT,
@@ -12,5 +12,10 @@ export const addToCart = payload => ({
 
 export const editProduct = payload => ({
     type:EDIT_PRODUCT,
+    payload
+})
+
+export const addToOrder = payload => ({
+    type:ADD_TO_ORDER,
     payload
 })
