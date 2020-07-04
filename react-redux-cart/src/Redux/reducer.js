@@ -1,10 +1,10 @@
-import { ADD_PRODUCT, ADD_TO_CART, EDIT_PRODUCT, ADD_TO_ORDER } from './actionTypes';
+import { ADD_PRODUCT, ADD_TO_CART, EDIT_PRODUCT, ADD_TO_ORDER, INCREMENT, DECREMENT } from './actionTypes';
 import data from '../Data.js'
 
 let initialState = {
     data: data,
     cartArray: [],
-    orderArray: [],
+    orderArray: []
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -23,7 +23,7 @@ const reducer = (state = initialState, { type, payload }) => {
                         ...item,
                         name: payload.name,
                         cost: payload.price,
-                        category: payload.category
+                        category: payload.category,
                     }
                     : item
             )
@@ -49,6 +49,26 @@ const reducer = (state = initialState, { type, payload }) => {
                 orderArray: [...state.orderArray, payload]
             }
         }
+        case INCREMENT:
+            let data = state.data.map(item =>
+                item.id === payload ?
+                {
+                    ...item,
+                    counter:item.counter++
+                }
+                : item
+                )
+                console.log(data)
+                console.log(state.data)
+            return {
+                ...state,
+                data: data
+            }
+        case DECREMENT:
+            return {
+                ...state,
+                counter: state.counter - 1
+            }
         default:
             return state
     }

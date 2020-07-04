@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {editProduct} from "../Redux/action"
+import { editProduct } from "../Redux/action"
 
 class AddProduct extends Component {
     constructor(props) {
@@ -12,7 +12,7 @@ class AddProduct extends Component {
             name: '',
             price: '',
             category: '',
-            id:''
+            id: ''
         }
     }
 
@@ -22,8 +22,8 @@ class AddProduct extends Component {
         })
     }
 
-    handleClick = (id)=>{
-        this.setState({ edit: !this.state.edit ,id:id})
+    handleClick = (id) => {
+        this.setState({ edit: !this.state.edit, id: id })
     }
     componentWillMount() {
         const { id } = this.props.match ? this.props.match.params : '';
@@ -44,10 +44,10 @@ class AddProduct extends Component {
 
     render() {
         const { data, edit } = this.state
-        const {editProduct} = this.props
+        const { editProduct } = this.props
         if (!edit) {
             return (
-                <div className="container mt5">
+                <div className="container mt-5">
                     <table className="table">
                         <thead className="thead-dark">
                             <tr>
@@ -96,12 +96,14 @@ class AddProduct extends Component {
                         <label htmlFor="inputAddress">Category</label>
                         <input onChange={this.handleChange} name="category" type="text" className="form-control" />
                     </div>
-                    <button onClick={() => editProduct({
-                        name: this.state.name,
-                        price: this.state.price,
-                        category: this.state.category,
-                        id: this.state.id
-                    })} className="btn btn-info">Submit</button>
+                    <button onClick={() => editProduct(
+                        {
+                            name: this.state.name,
+                            price: this.state.price,
+                            category: this.state.category,
+                            id: this.state.id
+                        }
+                    )} className="btn btn-info">Submit</button>
                 </div>
             )
         }
@@ -116,7 +118,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        editProduct:props=>dispatch(editProduct(props))
+        editProduct: props => dispatch(editProduct(props))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddProduct)

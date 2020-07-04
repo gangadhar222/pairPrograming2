@@ -1,4 +1,3 @@
-import {v4 as uuidv4} from 'uuid';
 
 let data = [
     {
@@ -7,7 +6,8 @@ let data = [
         "incart":false,
         "category":"Furniture",
         "img":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/amazon-rivet-furniture-1533048038.jpg",
-        "id":1
+        "id":1,
+        "counter":1
     },
     {
         "name":"Chair",
@@ -15,7 +15,8 @@ let data = [
         "incart":false,
         "category":"Furniture",
         "img":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/amazon-rivet-furniture-1533048038.jpg",
-        "id":2
+        "id":2,
+        "counter":1
     },
     {
         "name":"Sofa",
@@ -23,7 +24,8 @@ let data = [
         "incart":false,
         "category":"Furniture",
         "img":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/amazon-rivet-furniture-1533048038.jpg",
-        "id":3
+        "id":3,
+        "counter":1
     },
     {
         "name":"EarPhones",
@@ -31,7 +33,8 @@ let data = [
         "incart":false,
         "category":"Electronics",
         "img":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/amazon-rivet-furniture-1533048038.jpg",
-        "id":4
+        "id":4,
+        "counter":1
     },
     {
         "name":"Headphones",
@@ -39,7 +42,8 @@ let data = [
         "incart":false,
         "category":"Electronics",
         "img":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/amazon-rivet-furniture-1533048038.jpg",
-        "id":5
+        "id":5,
+        "counter":1
     },
     {
         "name":"Tv",
@@ -47,7 +51,8 @@ let data = [
         "incart":false,
         "category":"Electronics",
         "img":"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/amazon-rivet-furniture-1533048038.jpg",
-        "id":6
+        "id":6,
+        "counter":1
     }
 ]
 
