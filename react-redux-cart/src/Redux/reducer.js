@@ -68,10 +68,11 @@ const reducer = (state = initialState, { type, payload }) => {
                 cartArray: data1
             }
         case DECREMENT:
-            var data2 = state.cartArray.map(item =>item.id == payload ? {...item,counter: item.counter - 1 } : item)
+            var data2 = state.cartArray.map(item =>item.id == payload ?{ ...item, counter: item.counter - 1 } : item )
+            let data3 = data2.filter(item => item.counter===0 ? null :item)
             return {
                 ...state,
-                cartArray: data2
+                cartArray: data3
             }
         default:
             return state
