@@ -35,44 +35,43 @@ const reducer = (state = initialState, { type, payload }) => {
             }
         case ADD_TO_CART: {
             let item = state.data.find(item => item.id == payload)
-
+            let arr = [...state.cartArray]
+            let flag = false
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].id == payload) {
+                    flag = true
+                    arr[i].counter++
+                    break
+                }
+            }
+            if (!flag) {
+                return {
+                    ...state,
+                    cartArray: [...arr,{...item,counter:1}]
+                }
+            }
             return {
                 ...state,
-                cartArray: [...state.cartArray, item]
+                cartArray: arr
             }
         }
         case ADD_TO_ORDER: {
-            console.log(payload)
             return {
                 ...state,
                 orderArray: [...state.orderArray, payload]
             }
         }
         case INCREMENT:
-            let data = state.data.map(item =>
-                item.id === payload ?
-                    {
-                        ...item,
-                        counter: item.counter++
-                    }
-                    : item
-            )
+            let data1 = state.cartArray.map(item =>item.id == payload ?{ ...item, counter: item.counter + 1 } : item )
             return {
                 ...state,
-                data: data
+                cartArray: data1
             }
         case DECREMENT:
-            var data1 = state.data.map(item =>
-                item.id === payload ?
-                    {
-                        ...item,
-                        counter: item.counter--
-                    }
-                    : item
-            )
+            var data2 = state.cartArray.map(item =>item.id == payload ? {...item,counter: item.counter - 1 } : item)
             return {
                 ...state,
-                data: data1
+                cartArray: data2
             }
         default:
             return state
