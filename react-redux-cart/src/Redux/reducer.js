@@ -27,7 +27,6 @@ const reducer = (state = initialState, { type, payload }) => {
                     }
                     : item
             )
-            console.log(editData)
             {
                 return {
                     ...state,
@@ -52,22 +51,28 @@ const reducer = (state = initialState, { type, payload }) => {
         case INCREMENT:
             let data = state.data.map(item =>
                 item.id === payload ?
-                {
-                    ...item,
-                    counter:item.counter++
-                }
-                : item
-                )
-                console.log(data)
-                console.log(state.data)
+                    {
+                        ...item,
+                        counter: item.counter++
+                    }
+                    : item
+            )
             return {
                 ...state,
                 data: data
             }
         case DECREMENT:
+            var data1 = state.data.map(item =>
+                item.id === payload ?
+                    {
+                        ...item,
+                        counter: item.counter--
+                    }
+                    : item
+            )
             return {
                 ...state,
-                counter: state.counter - 1
+                data: data1
             }
         default:
             return state
