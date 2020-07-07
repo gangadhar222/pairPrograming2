@@ -79,7 +79,7 @@ export class Cart extends Component {
                                         <td>{item.name}</td>
                                         <td>{item.cost}</td>
                                         <td>{item.category}</td>
-                                        <td><button className="btn btn-outline btn-warning" onClick={() => this.handleDecrement(item.id)}>-</button>{item.counter}<button class="btn btn-outline btn-success" onClick={() => this.handleIncrement(item.id,1)}>+</button></td>
+                                        <td><button className="btn btn-outline btn-warning" onClick={() => this.handleDecrement(item.id)}>-</button>{item.counter}<button className="btn btn-outline btn-success" onClick={() => this.handleIncrement(item.id,1)}>+</button></td>
                                         <td>{`${item.counter * item.cost}`}</td>
                                     </tr>
                                 )

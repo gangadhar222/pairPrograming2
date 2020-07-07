@@ -8,7 +8,7 @@ export class Home extends Component {
         const {data,addToCart}=this.props
         return (
             <div className="container mt-5">
-                <Item handleClick={addToCart} data={data} />
+                <Item addToCart={addToCart} data={data} />
             </div>
         )
     }

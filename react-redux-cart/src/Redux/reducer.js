@@ -35,6 +35,7 @@ const reducer = (state = initialState, { type, payload }) => {
                     data: editData
                 }
         case ADD_TO_CART: {
+            console.log(payload)
             let item = state.data.find(item => item.id === payload)
             let arr = [...state.cartArray]
             let flag = false
@@ -59,7 +60,8 @@ const reducer = (state = initialState, { type, payload }) => {
         case ADD_TO_ORDER: {
             return {
                 ...state,
-                orderArray: [...state.orderArray, payload]
+                orderArray: [...state.orderArray, payload],
+                cartArray:[]
             }
         }
         case INCREMENT:

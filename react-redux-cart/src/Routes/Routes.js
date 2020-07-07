@@ -5,6 +5,7 @@ import Product from "./Product";
 import Cart from "./Cart";
 import Orders from "./Orders";
 import AddProduct from "./AddProduct";
+import Login from "../components/Login";
 
 export default function Routes() {
     return (
@@ -12,9 +13,10 @@ export default function Routes() {
                 <Route exact path="/" render={()=><Home />} />
                 <Route exact path="/product" render={()=><Product />} />
                 <Route exact path="/product/:id" render={(props)=><Product {...props}/>} />
-                <Route exact path="/addproduct" render={()=><AddProduct />} />
-                <Route exact path="/cart" render={()=><Cart />} />
-                <Route exact path="/orders" render={()=><Orders />} />
+                <Route path="/addproduct" render={()=><AddProduct />} />
+                <Route path="/cart" render={()=><Cart />} />
+                <Route path="/orders" render={()=><Orders />} />
+                <Route path="/login" render={()=><Login />} />
             </Switch>
     )
 }
