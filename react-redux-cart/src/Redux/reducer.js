@@ -8,6 +8,11 @@ let initialState = {
     orderArray: [],
     auth:false,
     user:{
+        name:"user",
+        password:"user"
+    },
+    adminAuth:false,
+    admin:{
         name:"admin",
         password:"admin"
     }
@@ -91,10 +96,12 @@ const reducer = (state = initialState, { type, payload }) => {
                         auth: true
                     }
                 }
-                return {
-                    ...state,
-                    auth: false
-                }
+               if(name==state.admin.name && password==state.admin.password){
+                   return{
+                       ...state,
+                       adminAuth: true
+                   }
+               }
             }
         default:
             return state

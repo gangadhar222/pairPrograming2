@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addProduct } from '../Redux/action'
+import { addProduct } from '../Redux/action';
+import { Redirect } from "react-router-dom";
 
 export class AddProduct extends Component {
     constructor(props) {
@@ -10,7 +11,8 @@ export class AddProduct extends Component {
             name: '',
             cost: '',
             category: '',
-            img: ''
+            img: '',
+            render: false,
         }
     }
 
@@ -20,8 +22,25 @@ export class AddProduct extends Component {
         })
     }
 
+    handleClick = (obj) => {
+        const { addProduct, auth } = this.props
+        if (auth) {
+            this.setState({
+                render: false
+            })
+            addProduct(obj)
+        }
+        else{
+            this.setState({
+                render: true
+            })
+        }
+    }
+
     render() {
-        const { addProduct } = this.props;
+        if (this.state.render) {
+            return <Redirect to='/login' />
+        }
         return (
             <div className="container mt-5">
                 <h3 className="text-center">Add Product</h3>
@@ -45,7 +64,7 @@ export class AddProduct extends Component {
                         <input onChange={this.handleChange} name="img" type="text" className="form-control" />
                     </div>
                 </div>
-                <button onClick={() => addProduct({
+                <button onClick={() => this.handleClick({
                     name: this.state.name,
                     category: this.state.category,
                     cost: this.state.cost,
@@ -56,9 +75,13 @@ export class AddProduct extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    auth: state.adminAuth
+})
+
 const mapDispatchToProps = dispatch => {
     return {
         addProduct: (payload) => dispatch(addProduct(payload))
     }
 }
-export default connect(null, mapDispatchToProps)(AddProduct);
+export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);
