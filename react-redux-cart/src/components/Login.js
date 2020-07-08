@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import {loginSubmit} from '../Redux/action.js';
+import { connect } from 'react-redux';
+import {Redirect} from "react-router-dom";
 
 export class Login extends Component {
     constructor(props) {
@@ -17,8 +20,10 @@ export class Login extends Component {
     }
     
     render() {
-        const {validateUser} = this.props.location.state
-        console.log(validateUser)
+        const {loginSubmit,auth} = this.props;
+        if(auth){
+            return <Redirect to='/' />
+        }
         return (
             <div className="container mt-5">
                 <h3 className="text-center">Login</h3>
@@ -32,13 +37,20 @@ export class Login extends Component {
                         <input onChange={this.handleChange} name="password" type="password" className="form-control" />
                     </div>
                 </div>
-                <button onClick={() => validateUser({
+                <button onClick={() => loginSubmit({
                     name: this.state.name,
-                    category: this.state.password,
-                })} className="btn btn-warning">Add Product</button>
+                    password: this.state.password,
+                })} className="btn btn-warning">Submit</button>
             </div>
         )
     }
 }
 
-export default Login
+const mapStateToProps = state=>({
+    auth: state.auth
+})
+
+const mapDispatchToProps = dispatch => ({
+    loginSubmit:(payload)=>dispatch(loginSubmit(payload))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -1,11 +1,16 @@
-import { ADD_PRODUCT, ADD_TO_CART, EDIT_PRODUCT, ADD_TO_ORDER, INCREMENT, DECREMENT } from './actionTypes';
+import { ADD_PRODUCT, ADD_TO_CART, EDIT_PRODUCT, ADD_TO_ORDER, INCREMENT, DECREMENT,LOGIN } from './actionTypes';
 import data from '../Data';
 import { v4 as uuidv4 } from 'uuid';
 
 let initialState = {
     data: data,
     cartArray: [],
-    orderArray: []
+    orderArray: [],
+    auth:null,
+    user:{
+        name:"admin",
+        password:"admin"
+    }
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -35,7 +40,7 @@ const reducer = (state = initialState, { type, payload }) => {
                     data: editData
                 }
         case ADD_TO_CART: {
-            console.log(payload)
+
             let item = state.data.find(item => item.id === payload)
             let arr = [...state.cartArray]
             let flag = false
@@ -76,6 +81,20 @@ const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 cartArray: data3
+            }
+        case LOGIN:
+            {
+                const {name,password} =  payload
+                if(name==state.user.name && password==state.user.password){
+                    return{
+                        ...state,
+                        auth: true
+                    }
+                }
+                return {
+                    ...state,
+                    auth: false
+                }
             }
         default:
             return state

@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 import Item from "../components/Item";
 import {addToCart} from "../Redux/action";
+import {Redirect} from "react-router-dom";
+import Login from "../components/Login";
 
 export class Home extends Component {
+
     render() {
-        const {data,addToCart}=this.props
+        const {data,addToCart,auth}=this.props
+        if(!auth){
+                return <Redirect to='/login' />
+        }
         return (
             <div className="container mt-5">
                 <Item addToCart={addToCart} data={data} />
@@ -16,7 +22,8 @@ export class Home extends Component {
 
 const mapStateToProps=state=>{
     return{
-        data:state.data
+        data:state.data, 
+        auth:state.auth
     }
 }
 

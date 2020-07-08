@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link, Redirect} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 export default class Item extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            login: false,
             username: 'user',
             password: 'user'
         }
@@ -13,22 +12,7 @@ export default class Item extends React.Component {
 
     handleClick = (id) => {
         const { addToCart } = this.props
-        if (!this.state.login) {
-            return <Redirect
-            to={{
-              pathname: "/login",
-              state: { validateUser: this.validateUser }
-            }}
-          />
-        }
-        else {
-            console.log('hi')
-            addToCart(id)
-        }
-    }
-
-    validateUser = (props) => {
-        console.log(props)
+        addToCart(id)
     }
 
     render() {
@@ -67,3 +51,4 @@ export default class Item extends React.Component {
         )
     }
 }
+
