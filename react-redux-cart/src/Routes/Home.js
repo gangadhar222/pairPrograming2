@@ -9,12 +9,10 @@ export class Home extends Component {
 
     render() {
         const {data,addToCart,auth}=this.props
-        if(!auth){
-                return <Redirect to='/login' />
-        }
+      
         return (
             <div className="container mt-5">
-                <Item addToCart={addToCart} data={data} />
+                <Item addToCart={addToCart} data={data}  auth={auth}/>
             </div>
         )
     }

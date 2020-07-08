@@ -6,17 +6,31 @@ export default class Item extends React.Component {
         super(props)
         this.state = {
             username: 'user',
-            password: 'user'
+            password: 'user',
+            render: false
         }
     }
 
     handleClick = (id) => {
-        const { addToCart } = this.props
-        addToCart(id)
+        const { addToCart, auth } = this.props
+        if (auth) {
+            this.setState({
+                render:false
+            })
+            addToCart(id)
+        }
+        else{
+            this.setState({
+                render:true
+            })
+        }
     }
 
     render() {
         const { data } = this.props
+        if (this.state.render) {
+            return <Redirect to='/login' />
+        }
         return (
             <div>
                 <table className="table">
@@ -51,4 +65,7 @@ export default class Item extends React.Component {
         )
     }
 }
+
+
+
 

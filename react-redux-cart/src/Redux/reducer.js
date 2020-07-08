@@ -6,7 +6,7 @@ let initialState = {
     data: data,
     cartArray: [],
     orderArray: [],
-    auth:null,
+    auth:false,
     user:{
         name:"admin",
         password:"admin"
