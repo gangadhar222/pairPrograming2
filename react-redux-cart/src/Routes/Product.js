@@ -81,7 +81,8 @@ class AddProduct extends Component {
         }
         else {
             return (
-                <div>
+                <div className="container mt-5">
+                    <h3 className="text-center">Edit Product</h3>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="inputEmail4">Name</label>

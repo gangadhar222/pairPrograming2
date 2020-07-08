@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 import Item from "../components/Item";
 import {addToCart} from "../Redux/action";
-import {Redirect} from "react-router-dom";
-import Login from "../components/Login";
 
 export class Home extends Component {
 
