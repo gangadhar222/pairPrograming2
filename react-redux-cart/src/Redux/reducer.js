@@ -21,15 +21,13 @@ let initialState = {
 const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case ADD_PRODUCT:
-            console.log("addproduct")
             let item = {
                 ...payload,
                 id: uuidv4()
             }
             return {
                 ...state,
-                data: [...state.data, item],
-                auth:false
+                data: [...state.data, item]
             }
         case EDIT_PRODUCT:
             let editData = state.data.map(item =>
@@ -70,7 +68,6 @@ const reducer = (state = initialState, { type, payload }) => {
             }
         }
         case ADD_TO_ORDER: {
-            // console.log(payload)
             return {
                 ...state,
                 orderArray: [...state.orderArray, payload],
@@ -96,15 +93,13 @@ const reducer = (state = initialState, { type, payload }) => {
                 if(name==state.user.name && password==state.user.password){
                     return{
                         ...state,
-                        auth: true,
-                        adminAuth:false
+                        auth: true
                     }
                 }
                if(name==state.admin.name && password==state.admin.password){
                    return{
                        ...state,
-                       adminAuth: true,
-                       auth:false
+                       adminAuth: true
                    }
                }
             }

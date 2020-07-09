@@ -31,7 +31,6 @@ export class AddProduct extends Component {
             addProduct(obj)
         }
         else{
-            console.log('hi',adminAuth)
             this.setState({
                 render: true
             })
