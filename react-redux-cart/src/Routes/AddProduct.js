@@ -23,14 +23,15 @@ export class AddProduct extends Component {
     }
 
     handleClick = (obj) => {
-        const { addProduct, auth } = this.props
-        if (auth) {
+        const { addProduct, adminAuth } = this.props
+        if (adminAuth) {
             this.setState({
                 render: false
             })
             addProduct(obj)
         }
         else{
+            console.log('hi',adminAuth)
             this.setState({
                 render: true
             })
@@ -76,7 +77,7 @@ export class AddProduct extends Component {
 }
 
 const mapStateToProps = state => ({
-    auth: state.adminAuth
+    adminAuth: state.adminAuth
 })
 
 const mapDispatchToProps = dispatch => {

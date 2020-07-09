@@ -5,3 +5,4 @@ export const ADD_TO_ORDER = 'ADD_TO_ORDER';
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';

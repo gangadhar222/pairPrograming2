@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, ADD_TO_CART, EDIT_PRODUCT, ADD_TO_ORDER, INCREMENT, DECREMENT,LOGIN } from './actionTypes';
+import { ADD_PRODUCT, ADD_TO_CART, EDIT_PRODUCT, ADD_TO_ORDER, INCREMENT, DECREMENT,LOGIN,LOGOUT} from './actionTypes';
 import data from '../Data';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,13 +21,15 @@ let initialState = {
 const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case ADD_PRODUCT:
+            console.log("addproduct")
             let item = {
                 ...payload,
                 id: uuidv4()
             }
             return {
                 ...state,
-                data: [...state.data, item]
+                data: [...state.data, item],
+                auth:false
             }
         case EDIT_PRODUCT:
             let editData = state.data.map(item =>
@@ -94,16 +96,32 @@ const reducer = (state = initialState, { type, payload }) => {
                 if(name==state.user.name && password==state.user.password){
                     return{
                         ...state,
-                        auth: true
+                        auth: true,
+                        adminAuth:false
                     }
                 }
                if(name==state.admin.name && password==state.admin.password){
                    return{
                        ...state,
-                       adminAuth: true
+                       adminAuth: true,
+                       auth:false
                    }
                }
             }
+        case LOGOUT:
+            if(payload=="auth"){
+                return {
+                    ...state,
+                    auth: false
+                }
+            }
+            if(payload=="admin"){
+                return {
+                    ...state,
+                    adminAuth: false
+                }
+            }
+            return state
         default:
             return state
     }

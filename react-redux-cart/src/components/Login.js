@@ -20,9 +20,14 @@ export class Login extends Component {
     }
     
     render() {
-        const {loginSubmit,auth} = this.props;
+        const {loginSubmit,auth,adminAuth} = this.props;
+        console.log('auth',auth)
+        console.log('adminauth',adminAuth)
         if(auth){
             return <Redirect to='/' />
+        }
+        if(adminAuth){
+            return <Redirect to='/addproduct' />
         }
         return (
             <div className="container mt-5">
@@ -47,7 +52,8 @@ export class Login extends Component {
 }
 
 const mapStateToProps = state=>({
-    auth: state.auth
+    auth: state.auth,
+    adminAuth: state.adminAuth
 })
 
 const mapDispatchToProps = dispatch => ({
